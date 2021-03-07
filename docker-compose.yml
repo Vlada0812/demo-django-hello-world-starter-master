@@ -28,7 +28,6 @@ services:
       - pg_password
       - secret_key
     security_opt:
-      - seccomp:unconfined
       - seccomp:security-profile.json
     deploy:
       resources:
