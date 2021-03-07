@@ -23,4 +23,9 @@ The project includes security measures listed below:
 3. All dependecies for the build are immediatly deleted after the installation, in order to minimize the security risks inside the container.
 4. CPU and memory capacities usage limited for all containers.
 5. Seccomp is acctivated in order to limit the permissions for different system calls from the container to the OS."Security-policy.json" - explicitly defines the additional to the default restricted actions like: mkdir and chown.
+6. SAST - The code is analyzed by static code scanning tools:
+  6.1 CodeQL -in python mode
+  6.2 Anchore -specialized in container vullnerabilities
+  6.3 The project also integrated with Snyk.
+
  
