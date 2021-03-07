@@ -5,7 +5,13 @@
 # information on Anchore's container image scanning tool Grype, see
 # https://github.com/anchore/grype
 name: Anchore Container Scan
-on: push
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '0 5 * * 1'
 jobs:
   Anchore-Build-Scan:
     runs-on: ubuntu-latest
