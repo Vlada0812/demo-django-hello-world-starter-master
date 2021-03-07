@@ -1,0 +1,63 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=/run/secrets/pg_password
+    secrets:
+      - pg_password
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "50M"
+
+  app:
+    build:
+      context: .
+    volumes:
+      - static_data:/vol/web
+    environment:
+      - SECRET_KEY=/run/secrets/secret_key
+      - PGPASSWORD=/run/secrets/pg_password
+      - ALLOWED_HOSTS=127.0.0.1,localhost, testapp.com, www.testapp.com
+    secrets:
+      - pg_password
+      - secret_key
+    security_opt:
+      - seccomp:unconfined
+      - seccomp:security-profile.json
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "50M"
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - static_data:/vol/static
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "50M"
+    depends_on:
+      - app
+
+volumes:
+  static_data:
+
+secrets:
+  pg_password:
+    external: true
+  secret_key:
+    external: true
