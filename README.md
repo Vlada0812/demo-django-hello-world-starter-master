@@ -26,4 +26,4 @@ The project includes security measures listed below:
 6. SAST - The code is analyzed by static code scanning tools:
   6.1 CodeQL -in python mode
   6.2 Anchore -specialized in container vullnerabilities
-  6.3 The project also integrated with Snyk - Snyk i integrated via Snyk web portal, will be demonstrated.
+  6.3 The project also integrated with Snyk - Snyk is integrated via Snyk web portal, will be demonstrated.
