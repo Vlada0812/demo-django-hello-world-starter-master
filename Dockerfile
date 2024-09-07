@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.12.0a1-alpine
 
 # Add scripts to the path of the running container
 ENV PATH="/scripts:${PATH}"
