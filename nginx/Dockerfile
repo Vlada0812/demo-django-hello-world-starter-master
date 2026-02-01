@@ -1,5 +1,5 @@
 #Best practice not to run container as a root 
-FROM nginxinc/nginx-unprivileged:1-alpine
+FROM nginxinc/nginx-unprivileged:1.28.0-alpine
 
 #Copy configuration to location where ngnix will look for configurations
 COPY ./default.conf /etc/nginx/conf.d/default.conf
